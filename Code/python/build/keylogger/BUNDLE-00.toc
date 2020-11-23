@@ -1,0 +1,3 @@
+([('keylogger',
+   '/Users/marcosplazagonzalez/Desktop/projecteFCiB/Code/python/dist/keylogger',
+   'EXECUTABLE')],)
