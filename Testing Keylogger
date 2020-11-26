@@ -1,0 +1,15 @@
+Testing Keylogger.exe
+
+1. Open Command Prompt to check Startup folder is empty. Paste the follwing line:
+	cd C:\Users\IEUser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+2. Now run the desktop programm (Keylogger.exe). This is a daemon Keylogger so you'll not going to see any change.
+
+3. Type up to 500 characters. 
+
+4. Once the number of characters is 500 a check the mailbox to see the log.txt content. We are sending this logs (different each other) to teamcyber5412@gamil.com, with password new_password100 every 500 characters introduced.
+
+5. Before shutting down the VM, check that the executable is now on:
+	cd C:\Users\IEUser\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+6. If the computer is restarted the Keylogger.exe should be able to execute normally. But it seems there's a bug here we were not able to fix.  (There's no persistence at the moment)

