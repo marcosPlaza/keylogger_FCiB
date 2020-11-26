@@ -1,4 +1,4 @@
-# projecteFCiB
+# keylogger_FCiB
 Proyecto de ciberseguridad. Realizado por Joaquim Yuste y Marcos Plaza. Keylogger desarrollado, solo con propositos académicos.
 
 ## Contenidos de la memoria
