@@ -8,3 +8,6 @@ Proyecto de ciberseguridad. Realizado por Joaquim Yuste y Marcos Plaza. Keylogge
 * Tipos de Keylogger
 * Vectores de ataque con Keylogger. (Casos de uso, como se emplea normalmente este tipo de ataques)
 * Nuestra implementación
+
+## Contraseña de la máquina virtual
+* Passw0rd!
